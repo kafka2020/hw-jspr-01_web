@@ -11,16 +11,14 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Server {
-    // Фиксированный размер пула потоков
-    private final int POOL_SIZE = 64;
     private final ExecutorService threadPool;
     private final List<String> validPaths;
     private final int port;
 
-    public Server(int port) {
+    public Server(int port, int pool_size) {
         this.port = port;
-        // Инициализация пула потоков с фиксированным размером
-        this.threadPool = Executors.newFixedThreadPool(POOL_SIZE);
+        // Инициализация пула потоков с размером, переданным в конструктор
+        this.threadPool = Executors.newFixedThreadPool(pool_size);
         // Список допустимых путей
         this.validPaths = List.of("/index.html", "/spring.svg", "/spring.png", "/resources.html", "/styles.css", "/app.js", "/links.html", "/forms.html", "/classic.html", "/events.html", "/events.js");
     }
